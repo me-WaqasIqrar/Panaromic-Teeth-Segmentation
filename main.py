@@ -38,9 +38,6 @@ plt.show()
 plt.imshow(y_train[random_number,:,:,0])
 plt.show()
 # Check if CUDA is available and set the device
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Using device: {device}")
-
 
 model=UNET(input_shape=(512,512,1),last_activation='sigmoid')
 model.summary()
