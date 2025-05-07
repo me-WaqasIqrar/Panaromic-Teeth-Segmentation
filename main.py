@@ -50,3 +50,15 @@ model.fit(x_train,y_train,batch_size=8,epochs=1,verbose=1)
 
 
 print("Done...")
+
+##Plotting - RESULT Example
+img=cv2.imread("/content/Data/Images/107.png")#original img 107.png
+
+predict1 = cv2.resize(predict, (img.shape[1],img.shape[0]), interpolation=cv2.INTER_LANCZOS4)
+
+mask=np.uint8(predict1*255)#
+_, mask = cv2.threshold(mask, thresh=255/2, maxval=255, type=cv2.THRESH_BINARY)
+cnts,hieararch=cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+img = cv2.drawContours(img[:,:,0], cnts, -1, (255, 0, 0) , 2)
+img = cv2.UMat.get(img)
+cv2_imshow(img)
